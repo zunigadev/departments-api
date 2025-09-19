@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Departments API",
+        "description": "Documentación de la API de Departamentos con Swagger en Laravel",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Servidor API"
+        }
+    ],
+    "paths": {
+        "/api/departments": {
+            "get": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Listar todos los departamentos",
+                "operationId": "da8820891dd6bf08713e9d77fbe6389f",
+                "responses": {
+                    "200": {
+                        "description": "Lista de departamentos"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Departments",
+            "description": "Departments"
+        }
+    ]
+}
