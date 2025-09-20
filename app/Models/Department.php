@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property bool|null $is_active
  * 
- * @property Department|null $department
+ * @property Department|null $department	
  * @property Collection|Department[] $departments
  *
  * @package App\Models

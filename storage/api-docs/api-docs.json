@@ -17,11 +17,556 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "Listar todos los departamentos",
+                "summary": "Obtener lista de departamentos",
+                "description": "Listar todos los departamentos",
                 "operationId": "da8820891dd6bf08713e9d77fbe6389f",
                 "responses": {
                     "200": {
-                        "description": "Lista de departamentos"
+                        "description": "Lista de departamentos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Human Resources"
+                                            },
+                                            "level": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "employee_count": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_department_id": {
+                                                "type": "integer",
+                                                "example": 1,
+                                                "nullable": true
+                                            },
+                                            "ambassador_first_name": {
+                                                "type": "string",
+                                                "example": "John",
+                                                "nullable": true
+                                            },
+                                            "ambassador_last_name": {
+                                                "type": "string",
+                                                "example": "Smith",
+                                                "nullable": true
+                                            },
+                                            "is_active": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-09-19T12:00:00Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-09-19T12:00:00Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Crear departamento",
+                "description": "Crear un nuevo departamento",
+                "operationId": "c0f48115550ccf6a76b43ff263bfc05c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "level",
+                                    "employee_count"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Finance"
+                                    },
+                                    "level": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "employee_count": {
+                                        "type": "integer",
+                                        "example": 8
+                                    },
+                                    "parent_department_id": {
+                                        "type": "integer",
+                                        "example": 1,
+                                        "nullable": true
+                                    },
+                                    "ambassador_first_name": {
+                                        "type": "string",
+                                        "example": "Mary",
+                                        "nullable": true
+                                    },
+                                    "ambassador_last_name": {
+                                        "type": "string",
+                                        "example": "Johnson",
+                                        "nullable": true
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Departamento creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Finance"
+                                        },
+                                        "level": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "employee_count": {
+                                            "type": "integer",
+                                            "example": 8
+                                        },
+                                        "parent_department_id": {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "nullable": true
+                                        },
+                                        "ambassador_first_name": {
+                                            "type": "string",
+                                            "example": "Mary",
+                                            "nullable": true
+                                        },
+                                        "ambassador_last_name": {
+                                            "type": "string",
+                                            "example": "Johnson",
+                                            "nullable": true
+                                        },
+                                        "is_active": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/departments/{id}": {
+            "get": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Obtener departamento por ID",
+                "description": "Mostrar un departamento específico",
+                "operationId": "ecdae8bd198987eca46831ced8777bba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del departamento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Departamento encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Human Resources"
+                                        },
+                                        "level": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "employee_count": {
+                                            "type": "integer",
+                                            "example": 12
+                                        },
+                                        "parent_department_id": {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "nullable": true
+                                        },
+                                        "ambassador_first_name": {
+                                            "type": "string",
+                                            "example": "John",
+                                            "nullable": true
+                                        },
+                                        "ambassador_last_name": {
+                                            "type": "string",
+                                            "example": "Smith",
+                                            "nullable": true
+                                        },
+                                        "is_active": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2025-09-19T12:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2025-09-19T12:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Departamento no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Actualizar departamento",
+                "description": "Actualizar un departamento",
+                "operationId": "1d6fe343b0c809ce2a0722693aed793d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del departamento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Finance"
+                                    },
+                                    "level": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "employee_count": {
+                                        "type": "integer",
+                                        "example": 8
+                                    },
+                                    "parent_department_id": {
+                                        "type": "integer",
+                                        "example": 1,
+                                        "nullable": true
+                                    },
+                                    "ambassador_first_name": {
+                                        "type": "string",
+                                        "example": "Mary",
+                                        "nullable": true
+                                    },
+                                    "ambassador_last_name": {
+                                        "type": "string",
+                                        "example": "Johnson",
+                                        "nullable": true
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Departamento actualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Finance"
+                                        },
+                                        "level": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "employee_count": {
+                                            "type": "integer",
+                                            "example": 8
+                                        },
+                                        "parent_department_id": {
+                                            "type": "integer",
+                                            "example": 1,
+                                            "nullable": true
+                                        },
+                                        "ambassador_first_name": {
+                                            "type": "string",
+                                            "example": "Mary",
+                                            "nullable": true
+                                        },
+                                        "ambassador_last_name": {
+                                            "type": "string",
+                                            "example": "Johnson",
+                                            "nullable": true
+                                        },
+                                        "is_active": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Departamento no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Eliminar departamento",
+                "description": "Eliminar un departamento",
+                "operationId": "5cc7aebc708fbbbeb04b81504f62b499",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del departamento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Departamento eliminado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Departamento eliminado exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Departamento no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/departments/{id}/subdepartments": {
+            "get": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Obtener subdepartamentos de un departamento",
+                "description": "Listar subdepartamentos de un departamento",
+                "operationId": "1678cb46bfa2bb8c6f0fdd9642727021",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del departamento padre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de subdepartamentos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Finance Team"
+                                            },
+                                            "level": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "employee_count": {
+                                                "type": "integer",
+                                                "example": 5
+                                            },
+                                            "parent_department_id": {
+                                                "type": "integer",
+                                                "example": 1,
+                                                "nullable": true
+                                            },
+                                            "ambassador_first_name": {
+                                                "type": "string",
+                                                "example": "Anna",
+                                                "nullable": true
+                                            },
+                                            "ambassador_last_name": {
+                                                "type": "string",
+                                                "example": "Taylor",
+                                                "nullable": true
+                                            },
+                                            "is_active": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/departments/hierarchy": {
+            "get": {
+                "tags": [
+                    "Departments"
+                ],
+                "summary": "Obtener jerarquía de departamentos",
+                "description": "Obtener jerarquía completa de departamentos",
+                "operationId": "52263df32edc7ccce9fcd7da1ee29d24",
+                "responses": {
+                    "200": {
+                        "description": "Jerarquía completa de departamentos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Human Resources"
+                                            },
+                                            "level": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "employee_count": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_department_id": {
+                                                "type": "integer",
+                                                "example": null,
+                                                "nullable": true
+                                            },
+                                            "ambassador_first_name": {
+                                                "type": "string",
+                                                "example": "John",
+                                                "nullable": true
+                                            },
+                                            "ambassador_last_name": {
+                                                "type": "string",
+                                                "example": "Smith",
+                                                "nullable": true
+                                            },
+                                            "is_active": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-09-19T12:00:00Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-09-19T12:00:00Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -30,7 +575,7 @@
     "tags": [
         {
             "name": "Departments",
-            "description": "Departments"
+            "description": "API para la gestión de departamentos"
         }
     ]
 }
